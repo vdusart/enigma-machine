@@ -25,15 +25,17 @@ class RotorFactory:
         }
     }
 
-    def is_rotor_type_available(self, rotor_type):
-        return rotor_type in self.ROTORS
+    @staticmethod
+    def is_rotor_type_available(rotor_type):
+        return rotor_type in RotorFactory.ROTORS
 
-    def create_rotor(self, rotor_type: str, initial_position, setting):
-        if not self.is_rotor_type_available(rotor_type):
+    @staticmethod
+    def create_rotor(rotor_type: str, initial_position, setting):
+        if not RotorFactory.is_rotor_type_available(rotor_type):
             raise Exception(f"This rotor_type is not defined. (rotor_type: {rotor_type})")
         return Rotor(
-                self.ROTORS[rotor_type]['internal_wiring'],
-                self.ROTORS[rotor_type]['notch_position'],
+                RotorFactory.ROTORS[rotor_type]['internal_wiring'],
+                RotorFactory.ROTORS[rotor_type]['notch_position'],
                 initial_position,
                 setting
             )

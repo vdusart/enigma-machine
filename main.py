@@ -1,17 +1,16 @@
 from classes.Rotors.RotorFactory import RotorFactory
-from classes.Reflectors.Reflector import Reflector
+from classes.Reflectors.ReflectorFactory import ReflectorFactory
 from classes.RotorBloc import RotorBloc
 from classes.Plugboard import Plugboard
 from classes.Enigma import Enigma
 
 # Creation of the reflector
-reflector = Reflector()
+reflector = ReflectorFactory().create_reflector("B")
 
 # Creation of the rotors
-rotor_factory = RotorFactory()
-r_left = rotor_factory.create_rotor("I", 'C', 'F')
-r_middle = rotor_factory.create_rotor("II", 'B', 'E')
-r_rigth = rotor_factory.create_rotor("III", 'A', 'D')
+r_left = RotorFactory().create_rotor("I", 'C', 'F')
+r_middle = RotorFactory().create_rotor("II", 'B', 'E')
+r_rigth = RotorFactory().create_rotor("III", 'A', 'D')
 
 rotor_bloc = RotorBloc(r_left, r_middle, r_rigth, reflector)
 
@@ -25,5 +24,4 @@ plaintext = "CIPHER TEST"
 
 ciphertext = enigma.crypt(plaintext)
 
-wanted_output = "SLFLFV FVYW"
-print(ciphertext == wanted_output)
+print(ciphertext)
