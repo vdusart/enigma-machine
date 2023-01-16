@@ -27,10 +27,10 @@ class Rotor:
     def get_letter(self, input_letter, is_reverse):
         self.IS_VERBOSE and print("Current position:", self.position)
         offset_input = self.calculate_offset_input()
-        letter_index = (self.ALPHA.index(input_letter) + offset_input) % 26
+        letter_index = (self.ALPHA.index(input_letter) + offset_input) % len(self.ALPHA)
 
         offset_output = self.calculate_offset_output()
-        output = self.ALPHA[(self.ALPHA.index(self.rotor_permutation(letter_index, is_reverse)) + offset_output)%26]
+        output = self.ALPHA[(self.ALPHA.index(self.rotor_permutation(letter_index, is_reverse)) + offset_output)%len(self.ALPHA)]
         self.IS_VERBOSE and print(f"{input_letter} -> {self.ALPHA[letter_index]} -> {self.rotor_permutation(letter_index, is_reverse)} -> {output}")
         return output
     

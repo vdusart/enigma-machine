@@ -2,30 +2,27 @@ from classes.Rotors.RotorFactory import RotorFactory
 from classes.Reflectors.Reflector import Reflector
 from classes.RotorBloc import RotorBloc
 from classes.Plugboard import Plugboard
+from classes.Enigma import Enigma
 
-ALPHA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
+# Creation of the reflector
 reflector = Reflector()
 
+# Creation of the rotors
 rotor_factory = RotorFactory()
-r_left = rotor_factory.create_rotor("I", 'A', 'B')
-r_middle = rotor_factory.create_rotor("II", 'A', 'B')
-r_rigth = rotor_factory.create_rotor("III", 'A', 'B')
+r_left = rotor_factory.create_rotor("I", 'C', 'F')
+r_middle = rotor_factory.create_rotor("II", 'B', 'E')
+r_rigth = rotor_factory.create_rotor("III", 'A', 'D')
 
 rotor_bloc = RotorBloc(r_left, r_middle, r_rigth, reflector)
-input_letter = 'A'
 
-print(input_letter, "->", rotor_bloc.transform_signal(input_letter))
-print(input_letter, "->", rotor_bloc.transform_signal(input_letter))
-print(input_letter, "->", rotor_bloc.transform_signal(input_letter))
-print(input_letter, "->", rotor_bloc.transform_signal(input_letter))
-print(input_letter, "->", rotor_bloc.transform_signal(input_letter))
+# Creation of the plugboard
+plugboard = Plugboard()
 
-# plugboard = Plugboard()
-# plugboard.add_plug("A", "D")
-# plugboard.add_plug("B", "E")
-# plugboard.add_plug("C", "F")
-# for l in ALPHA:
-#     print(l, "->", plugboard.convert_letter(l), end=" | ")
+enigma = Enigma(rotor_bloc, plugboard)
 
-# print()
+plaintext = "CIPHER TEST"
+
+ciphertext = enigma.crypt(plaintext)
+
+wanted_output = "SLFLPV PVYW"
+print(ciphertext == wanted_output)
