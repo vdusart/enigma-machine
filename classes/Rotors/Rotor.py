@@ -2,8 +2,9 @@ class Rotor:
     ALPHA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     IS_VERBOSE = False
 
-    def __init__(self, internal_wiring, initial_position, setting):
+    def __init__(self, internal_wiring, notch_position, initial_position, setting):
         self.internal_wiring = internal_wiring
+        self.notch_position = notch_position
         self.position = initial_position
         self.setting = setting
 
@@ -34,4 +35,6 @@ class Rotor:
         return output
     
     def rotate(self):
+        next_rotor_should_rotate = self.position == self.notch_position
         self.position = self.ALPHA[(self.ALPHA.index(self.position) + 1)%len(self.ALPHA)]
+        return next_rotor_should_rotate

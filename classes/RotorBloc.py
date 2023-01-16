@@ -9,10 +9,9 @@ class RotorBloc:
         self.reflector = reflector
 
     def rotate_all_rotors(self):
-        # TO DO: Proper rotors rotations
-        # self.rotor_left.rotate()
-        # self.rotor_middle.rotate()
-        self.rotor_right.rotate()
+        if self.rotor_right.rotate() or self.rotor_middle.position == self.rotor_middle.notch_position:
+            if self.rotor_middle.rotate():
+                self.rotor_left.rotate()
     
     def transform_signal(self, input_letter):
         self.rotate_all_rotors()
