@@ -17,6 +17,7 @@ rotor_bloc = RotorBloc(r_left, r_middle, r_rigth, reflector)
 
 # Creation of the plugboard
 plugboard = Plugboard()
+plugboard.add_plug("P", "F")
 
 enigma = Enigma(rotor_bloc, plugboard)
 
@@ -24,5 +25,5 @@ plaintext = "CIPHER TEST"
 
 ciphertext = enigma.crypt(plaintext)
 
-wanted_output = "SLFLPV PVYW"
+wanted_output = "SLFLFV FVYW"
 print(ciphertext == wanted_output)
